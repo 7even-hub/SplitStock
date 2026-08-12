@@ -1,5 +1,3 @@
-// models/Sale.js
-
 const mongoose = require("mongoose");
 
 const saleSchema = new mongoose.Schema(
@@ -37,15 +35,25 @@ const saleSchema = new mongoose.Schema(
       min: 0,
     },
 
+    costPerUnit: {
+      type: mongoose.Schema.Types.Decimal128,
+      required: true,
+      min: 0,
+    },
+
     totalAmount: {
       type: mongoose.Schema.Types.Decimal128,
       required: true,
       min: 0,
     },
 
+    profit: {
+      type: mongoose.Schema.Types.Decimal128,
+      required: true,
+    },
+
     saleDate: {
       type: Date,
-      required: true,
       default: Date.now,
     },
   },

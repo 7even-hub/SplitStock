@@ -91,6 +91,12 @@ const repackBatchSchema = new mongoose.Schema(
       min: 0,
     },
 
+    processedCost: {
+      type: mongoose.Schema.Types.Decimal128,
+      required: true,
+      min: 0,
+    },
+
     status: {
       type: String,
       enum: ["active", "depleted"],

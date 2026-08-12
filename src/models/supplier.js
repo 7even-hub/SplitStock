@@ -1,5 +1,3 @@
-// models/Supplier.js
-
 const mongoose = require("mongoose");
 
 const supplierSchema = new mongoose.Schema(
@@ -15,16 +13,19 @@ const supplierSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      maxlength: 100,
     },
 
     phone: {
       type: String,
       trim: true,
+      maxlength: 30,
     },
 
     address: {
       type: String,
       trim: true,
+      maxlength: 250,
     },
   },
   {

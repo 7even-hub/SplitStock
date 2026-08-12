@@ -1,5 +1,3 @@
-// models/Alert.js
-
 const mongoose = require("mongoose");
 
 const alertSchema = new mongoose.Schema(
@@ -18,16 +16,20 @@ const alertSchema = new mongoose.Schema(
       index: true,
     },
 
+    type: {
+      type: String,
+      enum: [
+        "low_stock",
+        "out_of_stock",
+        "other",
+      ],
+      default: "low_stock",
+    },
+
     message: {
       type: String,
       required: true,
       trim: true,
-    },
-
-    type: {
-      type: String,
-      enum: ["low_stock", "out_of_stock", "other"],
-      default: "low_stock",
     },
 
     triggeredAt: {
