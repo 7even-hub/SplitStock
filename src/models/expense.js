@@ -1,5 +1,3 @@
-// models/Expense.js
-
 const mongoose = require("mongoose");
 
 const expenseSchema = new mongoose.Schema(
@@ -41,6 +39,7 @@ const expenseSchema = new mongoose.Schema(
     description: {
       type: String,
       trim: true,
+      maxlength: 500,
     },
 
     date: {

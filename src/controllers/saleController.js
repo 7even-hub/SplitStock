@@ -210,7 +210,7 @@ const createSale = async (req, res) => {
       updatedInventory.repackRemaining;
 
     if (
-      currentRetailStock <= product.lowStockLimit
+      currentRetailStock <= product.lowStockLimit && bulkRemaining == 0
     ) {
       // Avoid creating duplicate unresolved alerts
       const existingAlert = await Alert.findOne({
@@ -292,7 +292,6 @@ const createSale = async (req, res) => {
 };
 
 
-//get all sales for the user
 
 const getSales = async (req, res) => {
   try {
@@ -324,7 +323,7 @@ const getSales = async (req, res) => {
 };
 
 
-//get a specific sale by ID
+
 
 const getSaleById = async (req, res) => {
   try {

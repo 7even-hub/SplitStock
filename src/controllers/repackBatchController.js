@@ -385,11 +385,8 @@ const createRepackBatch = async (req, res) => {
             }
         );
 
-        //commit the transaction
-
         await session.commitTransaction();
 
-        //return the response with all relevant details
 
         return res.status(201).json({
             success: true,
@@ -443,7 +440,6 @@ const createRepackBatch = async (req, res) => {
             },
         });
     } catch (error) {
-        //rollback transaction on error
 
         await session.abortTransaction();
 
@@ -464,8 +460,6 @@ const createRepackBatch = async (req, res) => {
     }
 };
 
-
-//get all repack batches for the user
 
 const getRepackBatches = async (req, res) => {
     try {
@@ -503,8 +497,6 @@ const getRepackBatches = async (req, res) => {
     }
 };
 
-
-//get a specific repack batch by ID
 
 const getRepackBatchById = async (req, res) => {
     try {
