@@ -10,6 +10,9 @@ const bulkPurchaseRoutes = require("./routes/bulkPurchaseRoutes");
 const repackBatchRoutes = require("./routes/repackBatchRoutes");
 const saleRoutes = require("./routes/saleRoutes");
 const inventoryRoutes = require("./routes/inventoryRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const expenseRoutes = require("./routes/expenseRoutes");
+const alertRoutes = require("./routes/alertRoutes");
 
 const app = express();
 
@@ -28,6 +31,9 @@ app.use("/api/purchases", bulkPurchaseRoutes);
 app.use("/api/repack-batches", repackBatchRoutes);
 app.use("/api/sales", saleRoutes);
 app.use("/api/inventory", inventoryRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/expenses", expenseRoutes);
+app.use("/api/alerts", alertRoutes);
 
 app.get("/api/auth/me", protect, (req, res) => {
   res.status(200).json({

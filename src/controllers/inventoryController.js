@@ -1,10 +1,6 @@
 const Inventory = require("../models/inventory");
 
 
-// ============================================================
-// GET ALL INVENTORY
-// ============================================================
-
 const getInventory = async (req, res) => {
   try {
     const inventory = await Inventory.find({
@@ -28,10 +24,6 @@ const getInventory = async (req, res) => {
   }
 };
 
-
-// ============================================================
-// GET INVENTORY FOR ONE PRODUCT
-// ============================================================
 
 const getProductInventory = async (req, res) => {
   try {
