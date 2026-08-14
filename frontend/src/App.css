@@ -1,0 +1,29 @@
+.onboarding-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e2e1f9;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.onboarding-container {
+  
+}
+
+.onboarding-left {
+  flex: 1;
+  padding: 200px;
+}
+
+.onboarding-right {
+  background-color: #eaf0fb;
+
+}
+
+.logo-text {
+  color: blue;
+  
+}
