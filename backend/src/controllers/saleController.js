@@ -7,7 +7,7 @@ const Product = require("../models/product");
 const Alert = require("../models/alert");
 
 
-//create a new sale
+//create a new saleeeeeeeee
 
 const createSale = async (req, res) => {
   const session = await mongoose.startSession();
