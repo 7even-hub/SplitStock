@@ -54,8 +54,9 @@ const bulkPurchaseSchema = new mongoose.Schema(
     },
 
     totalCost: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
+      min: 0,
     },
 
     purchaseDate: {

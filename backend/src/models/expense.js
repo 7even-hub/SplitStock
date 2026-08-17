@@ -16,7 +16,7 @@ const expenseSchema = new mongoose.Schema(
     },
 
     amount: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
       min: 0,
     },

@@ -101,7 +101,7 @@ const createBulkPurchase = async (req, res) => {
                 },
             },
             {
-                new: true,
+                returnDocument: 'after',
                 upsert: true,
                 setDefaultsOnInsert: true,
                 session,
