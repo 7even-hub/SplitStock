@@ -2,13 +2,13 @@
   "name": "splitstock",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/7even-hub/SplitStock#readme",
+  "homepage": "https://github.com/7even-hub/StockSplit#readme",
   "bugs": {
-    "url": "https://github.com/7even-hub/SplitStock/issues"
+    "url": "https://github.com/7even-hub/StockSplit/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/7even-hub/SplitStock.git"
+    "url": "git+https://github.com/7even-hub/StockSplit.git"
   },
   "license": "ISC",
   "author": "Zijela IT",
