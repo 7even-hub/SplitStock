@@ -4,6 +4,9 @@ const Product = require("../models/product");
 
 const createExpense = async (req, res) => {
   try {
+    console.log("🔥 CREATE EXPENSE HIT");
+    console.log("BODY:", req.body);
+    console.log("USER:", req.userId);
     const {
       productId,
       amount,
@@ -34,15 +37,18 @@ const createExpense = async (req, res) => {
       });
     }
 
-//verify product ownership if productId is provided
+    //verify product ownership if productId is provided
 
     if (productId) {
+      console.log("🔎 Checking product:", productId);
       const product = await Product.findOne({
         _id: productId,
         userId: req.userId,
       });
+      console.log("📦 Product found:", product);
 
       if (!product) {
+        console.log("❌ Product ownership check failed");
         return res.status(404).json({
           success: false,
           message: "Product not found",
@@ -50,15 +56,17 @@ const createExpense = async (req, res) => {
       }
     }
 
-
+    console.log("💾 Creating expense...");
     const expense = await Expense.create({
       userId: req.userId,
       productId: productId || null,
-      amount: amountNum.toFixed(2),
+      amount: amountNum,
       type,
       description: description?.trim(),
       date: date || new Date(),
     });
+    
+    console.log("✅ Expense created:", expense);
 
     return res.status(201).json({
       success: true,
@@ -189,7 +197,7 @@ const updateExpense = async (req, res) => {
         });
       }
 
-      expense.amount = amountNum.toFixed(2);
+      expense.amount = amountNum;
     }
 
     if (type !== undefined) {

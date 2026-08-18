@@ -4,29 +4,33 @@ const Product = require("../models/product");
 const Alert = require("../models/alert");
 
 const getDashboard = async (req, res) => {
-  try {
-    const userId = req.userId;
 
+  try {
+    const userId = req.userId
     const now = new Date();
 
-    const startOfToday = new Date(now);
+    const startOfToday = new Date(
+      now.toLocaleString("en-US", {
+        timeZone: "Africa/Lagos",
+      })
+    );
+
     startOfToday.setHours(0, 0, 0, 0);
 
-    const endOfToday = new Date(now);
-    endOfToday.setHours(23, 59, 59, 999);
+    const startOfTomorrow = new Date(startOfToday);
+    startOfTomorrow.setDate(startOfTomorrow.getDate() + 1);
 
-    const sevenDaysAgo = new Date(now);
+    const sevenDaysAgo = new Date(startOfToday);
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
-    sevenDaysAgo.setHours(0, 0, 0, 0);
 
-//Todays stats
+    //Todays stats
     const todayStats = await Sale.aggregate([
       {
         $match: {
           userId,
           saleDate: {
             $gte: startOfToday,
-            $lte: endOfToday,
+            $lt: startOfTomorrow,
           },
         },
       },
@@ -64,7 +68,7 @@ const getDashboard = async (req, res) => {
       unitsSold: 0,
     };
 
-//Inventory stats
+    //Inventory stats
 
     const inventoryStats = await Inventory.aggregate([
       {
@@ -97,7 +101,7 @@ const getDashboard = async (req, res) => {
       productCount: 0,
     };
 
-//Low stock products
+    //Low stock products
 
     const lowStockProducts = await Inventory.aggregate([
       {
@@ -159,7 +163,7 @@ const getDashboard = async (req, res) => {
       },
     ]);
 
-//Unresolved alerts
+    //Unresolved alerts
 
     const unresolvedAlertCount =
       await Alert.countDocuments({
@@ -167,7 +171,7 @@ const getDashboard = async (req, res) => {
         resolved: false,
       });
 
-//sales last 7 days
+    //sales last 7 days
 
     const salesLast7Days = await Sale.aggregate([
       {
@@ -182,9 +186,11 @@ const getDashboard = async (req, res) => {
       {
         $group: {
           _id: {
+
             $dateToString: {
               format: "%Y-%m-%d",
               date: "$saleDate",
+              timezone: "Africa/Lagos",
             },
           },
 
@@ -213,7 +219,7 @@ const getDashboard = async (req, res) => {
       },
     ]);
 
-//Recent sales
+    //Recent sales
 
     const recentSales = await Sale.find({
       userId,
@@ -228,7 +234,7 @@ const getDashboard = async (req, res) => {
       })
       .limit(10);
 
-//Top products
+    //Top products
 
     const topProducts = await Sale.aggregate([
       {
@@ -301,7 +307,7 @@ const getDashboard = async (req, res) => {
       },
     ]);
 
-//Returning dashboard data to bckend
+    //Returning dashboard data to bckend
 
     return res.status(200).json({
       success: true,

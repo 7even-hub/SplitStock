@@ -55,13 +55,13 @@ const repackBatchSchema = new mongoose.Schema(
     },
 
     costPerUnit: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
       min: 0,
     },
 
     sellingPrice: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
       min: 0,
     },
@@ -92,7 +92,7 @@ const repackBatchSchema = new mongoose.Schema(
     },
 
     processedCost: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
       min: 0,
     },

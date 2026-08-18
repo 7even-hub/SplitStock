@@ -30,25 +30,25 @@ const saleSchema = new mongoose.Schema(
     },
 
     sellingPrice: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
       min: 0,
     },
 
     costPerUnit: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
       min: 0,
     },
 
     totalAmount: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
       min: 0,
     },
 
     profit: {
-      type: mongoose.Schema.Types.Decimal128,
+      type: Number,
       required: true,
     },
 

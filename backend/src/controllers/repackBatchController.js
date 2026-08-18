@@ -287,7 +287,7 @@ const createRepackBatch = async (req, res) => {
                     },
                 },
                 {
-                    new: true,
+                    returnDocument: 'after',
                     session,
                 }
             );
@@ -326,7 +326,7 @@ const createRepackBatch = async (req, res) => {
                     },
                 },
                 {
-                    new: true,
+                    returnDocument: 'after',
                     session,
                 }
             );

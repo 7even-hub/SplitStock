@@ -7,7 +7,7 @@ const Product = require("../models/product");
 const Alert = require("../models/alert");
 
 
-//create a new sale
+//create a new saleeeeeeeee
 
 const createSale = async (req, res) => {
   const session = await mongoose.startSession();
@@ -19,7 +19,7 @@ const createSale = async (req, res) => {
       saleDate,
     } = req.body;
 
-//validate request
+    //validate request
 
     if (!repackBatchId || quantitySold === undefined) {
       return res.status(400).json({
@@ -40,11 +40,11 @@ const createSale = async (req, res) => {
       });
     }
 
-//start transaction
+    //start transaction
 
     session.startTransaction();
 
-//verify repack batch ownership
+    //verify repack batch ownership
 
     const batch = await RepackBatch.findOne({
       _id: repackBatchId,
@@ -60,7 +60,7 @@ const createSale = async (req, res) => {
       });
     }
 
-//check if there is enough stock in the batch
+    //check if there is enough stock in the batch
 
     if (batch.remainingUnits < quantitySoldNum) {
       await session.abortTransaction();
@@ -72,7 +72,7 @@ const createSale = async (req, res) => {
       });
     }
 
-//verify product ownership
+    //verify product ownership
 
     const product = await Product.findOne({
       _id: batch.productId,
@@ -88,12 +88,12 @@ const createSale = async (req, res) => {
       });
     }
 
-//get selling price and cost per unit from the batch
+    //get selling price and cost per unit from the batch
 
     const sellingPrice = Number(batch.sellingPrice);
     const costPerUnit = Number(batch.costPerUnit);
 
-//calculate total amount and profit
+    //calculate total amount and profit
 
     const totalAmount =
       sellingPrice * quantitySoldNum;
@@ -104,7 +104,7 @@ const createSale = async (req, res) => {
     const totalProfit =
       profitPerUnit * quantitySoldNum;
 
-//update repack batch stock
+    //update repack batch stock
 
     const updatedBatch =
       await RepackBatch.findOneAndUpdate(
@@ -128,7 +128,7 @@ const createSale = async (req, res) => {
           },
         },
         {
-          new: true,
+          returnDocument: 'after',
           session,
         }
       );
@@ -143,7 +143,7 @@ const createSale = async (req, res) => {
       });
     }
 
-//update inventory stock
+    //update inventory stock
 
     const updatedInventory =
       await Inventory.findOneAndUpdate(
@@ -164,7 +164,7 @@ const createSale = async (req, res) => {
           },
         },
         {
-          new: true,
+          returnDocument: 'after',
           session,
         }
       );
@@ -179,7 +179,7 @@ const createSale = async (req, res) => {
       });
     }
 
-//create sale record
+    //create sale record
 
     const sale = await Sale.create(
       [
@@ -204,13 +204,13 @@ const createSale = async (req, res) => {
       }
     );
 
-//check for low stock alert
+    //check for low stock alert
 
     const currentRetailStock =
       updatedInventory.repackRemaining;
 
     if (
-      currentRetailStock <= product.lowStockLimit && bulkRemaining == 0
+      currentRetailStock <= product.lowStockLimit && updatedInventory.bulkRemaining == 0
     ) {
       // Avoid creating duplicate unresolved alerts
       const existingAlert = await Alert.findOne({
@@ -241,11 +241,11 @@ const createSale = async (req, res) => {
       }
     }
 
-//commit transaction
+    //commit transaction
 
     await session.commitTransaction();
 
-//send response
+    //send response
 
     return res.status(201).json({
       success: true,
