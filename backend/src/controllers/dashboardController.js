@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Sale = require("../models/sales");
 const Inventory = require("../models/inventory");
 const Product = require("../models/product");
@@ -6,7 +7,7 @@ const Alert = require("../models/alert");
 const getDashboard = async (req, res) => {
 
   try {
-    const userId = req.userId
+    const userId = new mongoose.Types.ObjectId(req.userId);
     const now = new Date();
 
     const startOfToday = new Date(
