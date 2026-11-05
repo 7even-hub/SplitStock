@@ -1,0 +1,157 @@
+// ===========================================
+// Purchases page styles
+// Shared styles (cards, buttons, tables, grid) live in app.scss
+// ===========================================
+
+// ----- Colours -----
+$blue: #1558d6;
+$blue-tint: #e6eefc;
+$blue-mid: #6b8fe6;
+$blue-light: #c7d7fa;
+$red: #dc2626;
+$red-tint: #fee2e2;
+$line: #e5e9f2;
+
+// ----- Icon box on each summary card -----
+.pico {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+
+  &--blue {
+    background: $blue-tint;
+    color: $blue;
+  }
+
+  &--red {
+    background: $red-tint;
+    color: $red;
+  }
+}
+
+// ----- "This Month" tag on the Total Spend card -----
+.pill {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: $blue-tint;
+  color: $blue;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+// ----- Overlapping supplier initials on the Active Suppliers card -----
+.avatars {
+  display: flex;
+
+  i {
+    width: 24px;
+    height: 24px;
+    margin-left: -6px; // makes the circles overlap
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: $blue;
+    color: #fff;
+    font: 600 11px/24px Inter, sans-serif;
+    text-align: center;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:nth-child(2) {
+      background: $blue-mid;
+    }
+
+    // the "+3" circle
+    &:nth-child(3) {
+      background: $blue-light;
+      color: $blue;
+    }
+  }
+}
+
+// ----- Search box and status filter above the table -----
+.tools {
+  display: flex;
+  flex-wrap: wrap; // wraps onto two lines on small phones
+  gap: 8px;
+}
+
+select.btn {
+  padding: 8px 12px;
+  font-weight: 500;
+}
+
+// ----- "Showing 1 to 3 of 5 entries" and the page arrows -----
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+
+  div {
+    display: flex;
+    gap: 4px;
+  }
+
+  button {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border: 1px solid $line;
+    border-radius: 6px;
+
+    // greyed out on the first / last page
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ----- Add Purchase popup -----
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.4); // dark background behind the popup
+
+  // the white form box
+  &__box {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh;
+    overflow-y: auto; // scrolls if the phone screen is short
+
+    label {
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      padding: 10px;
+      border: 1px solid $line;
+      border-radius: 8px;
+      font: inherit;
+      font-weight: 400;
+    }
+  }
+
+  // Quantity and Unit side by side
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,102 @@
+
+$blue: #1558d6;
+$blue-tint: #e6eefc;
+$blue-light: #c7d7fa;
+$muted: #6b7280;
+
+// ----- Period picker and download button in the page header -----
+.tools {
+  display: flex;
+  gap: 8px;
+}
+
+select.btn {
+  padding: 8px 12px;
+  font-weight: 500;
+}
+
+// ----- Small "Sales / Profit" key above the chart -----
+.legend {
+  color: $muted;
+  font-size: 11px;
+
+  i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 4px 0 8px;
+    border-radius: 2px;
+    background: $blue-light; // sales colour
+
+    &.dark {
+      background: $blue; // profit colour
+    }
+  }
+}
+
+// ----- Bar chart -----
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 220px;
+
+  // one week = a pair of bars with a label underneath
+  &__group {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    height: 100%;
+  }
+
+  &__bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    height: 100%;
+
+    // each bar's height is set in the JSX as a percentage
+    span {
+      width: 40%;
+      max-width: 28px;
+      border-radius: 4px 4px 0 0;
+      background: $blue-light;
+
+      &.dark {
+        background: $blue;
+      }
+    }
+  }
+}
+
+// ----- Top Profit Makers list -----
+.tops {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: 28px 1fr auto; // rank | name | amount
+    gap: 10px;
+    align-items: center;
+  }
+
+  // the rank number box
+  &__n {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: $blue-tint;
+    color: $blue;
+    font-weight: 700;
+  }
+}

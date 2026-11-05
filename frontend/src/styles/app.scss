@@ -1,0 +1,404 @@
+// ===========================================
+// Shared styles for the whole website
+// ===========================================
+
+// ----- Colours and sizes -----
+$blue: #1558d6;
+$blue-tint: #e6eefc;
+$sidebar: #dfe9fb;
+$page-bg: #f5f7fb;
+$ink: #111827;
+$muted: #6b7280;
+$line: #e5e9f2;
+$red: #dc2626;
+$green: #15803d;
+$amber: #b45309;
+$desktop: 900px; // screens wider than this get the fixed sidebar
+
+// ----- Reset and basics -----
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background: $page-bg;
+  color: $ink;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+small {
+  font-size: 11px;
+}
+
+// Small helper classes
+.muted {
+  color: $muted;
+  font-size: 12px;
+}
+
+.danger {
+  color: $red;
+}
+
+.blue {
+  color: $blue;
+}
+
+.block {
+  display: block;
+}
+
+// ----- App shell (sidebar + page) -----
+.shell {
+  // menu button, phones only
+  &__burger {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 30;
+    padding: 8px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  // the area where each page appears
+  &__main {
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    padding: 64px 16px 24px;
+  }
+}
+
+// Sidebar: hidden off-screen on phones, slides in when opened
+.side {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 220px;
+  padding: 20px 14px;
+  background: $sidebar;
+  transform: translateX(-100%);
+  transition: transform 0.2s;
+
+  &--open {
+    transform: none;
+  }
+
+  &__brand {
+    display: grid;
+    margin-bottom: 20px;
+
+    b {
+      color: $blue;
+      font-size: 18px;
+    }
+
+    small {
+      color: $muted;
+    }
+  }
+
+  nav {
+    display: grid;
+    gap: 4px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: $ink;
+    font-weight: 500;
+
+    // the page you are on
+    &.is-active {
+      background: $blue;
+      color: #fff;
+    }
+  }
+
+  // pushes Settings down to the bottom
+  &__settings {
+    margin-top: auto;
+  }
+}
+
+// On bigger screens the sidebar is always visible
+@media (min-width: $desktop) {
+  .side {
+    transform: none;
+  }
+
+  .shell__burger {
+    display: none;
+  }
+
+  .shell__main {
+    margin-left: 220px;
+    padding: 24px 32px;
+  }
+}
+
+// ----- Page header -----
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  p {
+    margin-top: 4px;
+    color: $muted;
+    font-size: 12px;
+  }
+}
+
+// ----- Buttons -----
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+
+  &--primary {
+    background: $blue;
+    color: #fff;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &--ghost {
+    border: 1px solid $line;
+    background: #fff;
+  }
+
+  &--danger {
+    color: $red;
+  }
+
+  &--block {
+    width: 100%;
+  }
+}
+
+.link {
+  color: $blue;
+  font-weight: 600;
+}
+
+// ----- Cards -----
+.card {
+  padding: 16px;
+  border: 1px solid $line;
+  border-radius: 12px;
+  background: #fff;
+
+  // a muted line at the bottom of a card
+  > .muted {
+    margin-top: 12px;
+  }
+}
+
+// Title on the left, tools on the right, inside a card
+.card__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+// ----- Search box -----
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid $line;
+  border-radius: 8px;
+  background: #fff;
+
+  input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+  }
+
+  // fully rounded version used on Record Sale
+  &--wide {
+    border-radius: 999px;
+  }
+}
+
+// ----- Status badges -----
+.badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+
+  &--ok {
+    background: #dcfce7;
+    color: $green;
+  }
+
+  &--warn {
+    background: #fef3c7;
+    color: $amber;
+  }
+}
+
+// ----- Filter chips -----
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.chip {
+  padding: 6px 14px;
+  border: 1px solid $line;
+  border-radius: 999px;
+  background: #fff;
+
+  &.is-active {
+    border-color: $blue;
+    background: $blue;
+    color: #fff;
+  }
+}
+
+// ----- Grids of cards: 1 column on phones, more on bigger screens -----
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 700px) {
+    &--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1100px) {
+    &--4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    // chart (wide) + top list (narrow)
+    &--report {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+}
+
+// ----- Summary cards -----
+.stat {
+  display: grid;
+  gap: 6px;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    color: $muted;
+    font-size: 12px;
+  }
+
+  strong {
+    font-size: 24px;
+  }
+
+  small {
+    color: $green;
+  }
+
+  // the blue highlighted card (Est. Net Profit)
+  &--hero {
+    border-color: $blue;
+    background: $blue;
+    color: #fff;
+
+    .stat__top,
+    small {
+      color: #dbe7ff;
+    }
+  }
+}
+
+// ----- Tables (scroll sideways on small screens) -----
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+th {
+  color: $muted;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 12px 8px;
+  border-bottom: 1px solid $line;
+}
+
+// ----- Green message box (used after saving) -----
+.notice {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #dcfce7;
+  color: $green;
+  font-size: 12px;
+  font-weight: 600;
+}

@@ -1,0 +1,61 @@
+$text-dark: #0f172a;
+$border: #e2e8f0;
+$blue-600: #2563eb;
+$red: #dc2626;
+
+.quick-actions {
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 12px;
+  padding: 20px;
+  height: 100%;
+  box-sizing: border-box;
+
+  &__title {
+    margin: 0 0 16px;
+    font-size: 15px;
+    font-weight: 700;
+    color: $text-dark;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  &__btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+
+    &:hover { filter: brightness(0.97); }
+
+    &--blue { background: #eff6ff; color: $blue-600; }
+    &--grey { background: #f1f5f9; color: #475569; }
+    &--red { background: #fee2e2; color: $red; }
+
+    /* Faded look for buttons whose page isn't built yet */
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    &:disabled:hover { filter: none; }
+  }
+
+  /* The small "Coming soon" note under the label */
+  &__soon {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+}
