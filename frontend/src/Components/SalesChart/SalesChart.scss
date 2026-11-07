@@ -1,0 +1,39 @@
+.sales-chart {
+  width: 100%;
+  height: 220px;
+  overflow: visible;
+
+  &__grid {
+    stroke: #eef1f6;
+    stroke-width: 1;
+  }
+
+  &__bar {
+    fill: #bfdbfe; // light blue for normal bars
+    transition: fill 0.15s ease;
+    cursor: pointer;
+
+    &--active {
+      fill: #2563eb; // darker blue for the hovered/selected bar
+    }
+  }
+
+  &__axis-label {
+    font-size: 10px;
+    fill: #94a3b8;
+
+    &--x {
+      text-anchor: middle;
+    }
+  }
+
+  &__tooltip {
+    fill: #0f172a;
+  }
+
+  &__tooltip-text {
+    fill: #fff;
+    font-size: 11px;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,60 @@
+// ===========================================
+// Inventory page styles
+// Shared styles (cards, chips, tables, buttons) live in app.scss
+// ===========================================
+
+// ----- Colours -----
+$blue: #1558d6;
+$line: #e5e9f2;
+
+// ----- Search box and Add New Product button in the page header -----
+.tools {
+  display: flex;
+  flex-wrap: wrap; // wraps onto two lines on small phones
+  gap: 8px;
+}
+
+// ----- Small SKU text under each product name -----
+.sku {
+  display: block;
+  margin-top: 2px;
+  color: #6b7280;
+}
+
+// ----- "Showing 1 to 3 of 7 entries" and the numbered page buttons -----
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+
+  div {
+    display: flex;
+    gap: 4px;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 6px;
+    border: 1px solid $line;
+    border-radius: 6px;
+
+    // the page you are on
+    &.is-active {
+      border-color: $blue;
+      background: $blue;
+      color: #fff;
+    }
+
+    // greyed out on the first / last page
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}

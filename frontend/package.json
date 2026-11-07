@@ -21,13 +21,13 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-
-    "dependencies": {
+  "dependencies": {
+    "lucide-react": "^1.69.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.5"
   },
-
-    "devDependencies": {
+  "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
